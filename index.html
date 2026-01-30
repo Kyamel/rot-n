@@ -138,7 +138,60 @@
       <span id="moduloExplanation">The modulo operator (%) ensures the result always stays within the valid range (0-25 for letters, 0-9 for numbers).</span>
     </div>
   </div>
-</div> <!-- ESTE é o </div> correto que fecha o .container -->
+
+
+  <!-- Card SHA-256 -->
+  <div class="card">
+    <h2 id="sha256Title">🔐 SHA-256 Hash Generator</h2>
+    
+    <div class="info-text">
+      <strong id="whatIsSha256">What is SHA-256?</strong><br>
+      <span id="sha256Description">SHA-256 (Secure Hash Algorithm 256-bit) is a cryptographic hash function that produces a 64-character hexadecimal hash. It's widely used in blockchain, digital signatures, and password storage.</span>
+    </div>
+    
+    <textarea
+      id="sha256Input"
+      type="text"
+      placeholder="Enter text to generate SHA-256 hash..."
+      oninput="processSHA256()"
+    ></textarea>
+    
+    <button onclick="processSHA256()" id="sha256GenerateButton">Generate Hash</button>
+    
+    <textarea
+      id="sha256Output"
+      placeholder="64-character hexadecimal hash will appear here..."
+      readonly
+      rows="3"
+    ></textarea>
+    
+    <div class="info-text">
+      <strong id="sha256FeaturesTitle">Key Features of SHA-256:</strong><br>
+      <div id="sha256Feature1">• Deterministic: Same input always produces same hash</div>
+      <div id="sha256Feature2">• Fixed Size: Always 256 bits (64 hex characters)</div>
+      <div id="sha256Feature3">• One-way Function: Cannot reverse hash to original input</div>
+      <div id="sha256Feature4">• Avalanche Effect: Small change in input drastically changes hash</div>
+    </div>
+    
+    <div class="info-text">
+      <strong id="sha256AlgorithmTitle">SHA-256 Algorithm Steps:</strong><br>
+      <div id="sha256Step1">1. Message padding to multiple of 512 bits</div>
+      <div id="sha256Step2">2. Breaking into 512-bit blocks</div>
+      <div id="sha256Step3">3. Processing each block through compression function</div>
+      <div id="sha256Step4">4. Using bitwise operations and constants</div>
+      <div id="sha256Step5">5. Producing final 256-bit hash</div>
+    </div>
+    
+    <div class="info-text">
+      <strong id="sha256ExampleTitle">Example SHA-256 Hashes:</strong><br>
+      <div class="example" style="margin-top: 0.5rem;">
+        <div id="sha256Example1">"hello" → 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</div>
+        <div id="sha256Example2">"Hello" → 185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969</div>
+        <div id="sha256Example3">"hello1" → 91e9240f415223982edc345532630710e94a7f52cd5f48f5ee1afc555078f0ab</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="translations.js"></script>
 <script src="script.js"></script>

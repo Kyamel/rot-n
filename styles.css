@@ -475,6 +475,21 @@ textarea {
     animation: pulse 0.5s ease-in-out;
 }
 
+body.dark .char-box.highlight {
+    background: #6c7cff;
+    border-color: #6c7cff;
+    color: white;
+    animation: pulse 0.5s ease-in-out;
+}
+
+/* Tema claro para highlight - usando cor mais escura para melhor contraste */
+body.light .char-box.highlight {
+    background: #5a6bff; /* Azul mais escuro para melhor contraste */
+    border-color: #5a6bff;
+    color: white;
+    animation: pulse 0.5s ease-in-out;
+}
+
 .arrow {
     text-align: center;
     color: #6c7cff;
@@ -573,4 +588,24 @@ textarea {
         justify-content: center;
         max-width: 140px;
     }
+}
+
+/* SHA-256 */
+#sha256Output {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.info-text div {
+  margin: 0.3rem 0;
+  line-height: 1.5;
+}
+
+/* Estilo para os exemplos de hash SHA-256 */
+.example div {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  margin: 0.3rem 0;
+  word-break: break-all;
 }
