@@ -1,6 +1,6 @@
 let currentRotation = 13;
 let currentLanguage = 'en';
-let currentTheme = 'light';
+let currentTheme = 'dark';
 
 // SHA-256 Implementation
 function sha256(message) {
