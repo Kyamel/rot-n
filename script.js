@@ -226,7 +226,7 @@ function toggleLanguage() {
 // Alternar tema
 function toggleTheme() {
   const toggle = document.getElementById('themeToggle');
-  currentTheme = toggle.checked ? 'dark' : 'light';
+  currentTheme = toggle.checked ? 'light' : 'dark';
   document.body.className = currentTheme;
   
   // Atualizar label do tema
