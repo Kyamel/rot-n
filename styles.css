@@ -377,7 +377,7 @@ h2 {
 .rotation-control label {
     font-weight: bold;
     min-width: 100px;
-    font-size: 1.05rem;
+    font-size: 1.0rem;
 }
 
 .rotation-control input[type="range"] {
