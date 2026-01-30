@@ -1,188 +1,55 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>ROT Cipher - Cifra de Rotação</title>
+<title>ROT Cipher - Rotation Cipher</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/png" href="logo.png" />
-<link rel="apple-touch-icon" href="logo.png" />
-<style>
-* {
-  box-sizing: border-box;
-}
-body {
-  font-family: system-ui, sans-serif;
-  background: #0f1220;
-  color: #eaeaf0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 1rem;
-  margin: 0;
-}
-.container {
-  width: 100%;
-  max-width: 800px;
-}
-.card {
-  background: #1a1f3c;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.3);
-  margin-bottom: 1.5rem;
-}
-h1 {
-  margin-top: 0;
-  text-align: center;
-  color: #6c7cff;
-}
-h2 {
-  color: #8a9aff;
-  font-size: 1.2rem;
-  margin-top: 0;
-}
-.info-text {
-  line-height: 1.6;
-  color: #b8b8c8;
-  margin-bottom: 1rem;
-}
-.rotation-control {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-.rotation-control label {
-  font-weight: bold;
-  min-width: 100px;
-}
-.rotation-control input[type="range"] {
-  flex: 1;
-  margin: 0;
-}
-.rotation-value {
-  background: #6c7cff;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: bold;
-  min-width: 50px;
-  text-align: center;
-}
-input[type="text"], textarea, button {
-  width: 100%;
-  margin-top: 1rem;
-  padding: 0.75rem;
-  border-radius: 8px;
-  border: none;
-  font-size: 1rem;
-}
-input[type="text"], textarea {
-  background: #0f1220;
-  color: #eaeaf0;
-  border: 2px solid #2a2f4c;
-}
-input[type="text"]:focus, textarea:focus {
-  outline: none;
-  border-color: #6c7cff;
-}
-button {
-  background: #6c7cff;
-  color: #fff;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.2s;
-}
-button:hover {
-  background: #5a6bff;
-}
-textarea {
-  resize: vertical;
-  min-height: 80px;
-  font-family: 'Courier New', monospace;
-}
-.visualization {
-  background: #0f1220;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-top: 1.5rem;
-  border: 2px solid #2a2f4c;
-}
-.viz-title {
-  font-weight: bold;
-  color: #6c7cff;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-.alphabet-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-.char-box {
-  background: #1a1f3c;
-  padding: 0.5rem;
-  border-radius: 4px;
-  min-width: 35px;
-  text-align: center;
-  font-family: 'Courier New', monospace;
-  font-weight: bold;
-  border: 2px solid #2a2f4c;
-}
-.char-box.highlight {
-  background: #6c7cff;
-  border-color: #6c7cff;
-  animation: pulse 0.5s ease-in-out;
-}
-.arrow {
-  text-align: center;
-  color: #6c7cff;
-  font-size: 1.5rem;
-  margin: 0.5rem 0;
-}
-.example {
-  background: #2a2f4c;
-  padding: 1rem;
-  border-radius: 6px;
-  margin-top: 1rem;
-  font-family: 'Courier New', monospace;
-}
-.example-label {
-  color: #8a9aff;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-@media (max-width: 600px) {
-  .char-box {
-    min-width: 28px;
-    padding: 0.4rem;
-    font-size: 0.9rem;
-  }
-}
-</style>
+<link rel="icon" type="image/svg+xml" href="logo.svg" />
+<link rel="apple-touch-icon" type="image/svg+xml" href="logo.svg" />
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <div class="container">
+  <!-- Header com controles estilo iOS -->
+  <div class="controls-header">
+    <img src="logo.svg" alt="Logo" class="logo-header" />
+    <div class="controls">
+      <!-- Switch de Idioma -->
+      <div class="switch-container">
+        <span class="switch-label">🌐</span>
+        <div class="language-switch">
+          <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" data-lang="pt-BR" onclick="setLanguage('pt-BR')">PT</button>
+        </div>
+      </div>
+      
+      <!-- Switch de Tema -->
+      <div class="switch-container">
+        <span class="switch-label">🎨</span>
+        <div class="theme-switch">
+          <input type="checkbox" id="themeToggle" class="ios-toggle" onchange="toggleTheme()" />
+          <label for="themeToggle" class="ios-toggle-label">
+            <span class="ios-toggle-handle"></span>
+          </label>
+          <span class="theme-label" id="themeLabel">Dark</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card principal -->
   <div class="card">
     <h1>
-      <img src="logo.png" alt="Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;" />
-      ROT Cipher - Cifra de Rotação
+      <span id="title">ROT Cipher - Rotation Cipher</span>
     </h1>
     
-    <div class="info-text">
-      <strong>O que é a Cifra ROT?</strong><br>
-      A cifra ROT (rotação) é um método simples de criptografia por substituição onde cada letra é substituída por outra letra que está um número fixo de posições à frente no alfabeto. O ROT13 (rotação de 13 posições) é o mais famoso, mas você pode usar qualquer valor de 1 a 25.
+    <div class="info-text" id="description">
+      <strong id="whatIsRot">What is ROT Cipher?</strong><br>
+      <span id="rotDescription">ROT (rotation) cipher is a simple substitution cipher where each letter is replaced by another letter that is a fixed number of positions forward in the alphabet. ROT13 (13 positions) is the most famous, but you can use any value from 1 to 25.</span>
     </div>
     
     <div class="rotation-control">
-      <label for="rotation">Rotação:</label>
+      <label for="rotation" id="rotationLabel">Rotation:</label>
       <input 
         type="range" 
         id="rotation" 
@@ -197,162 +64,67 @@ textarea {
     <input
       id="input"
       type="text"
-      placeholder="Digite o texto (letras A-Z e números 0-9)"
+      placeholder="Enter text (letters A-Z and numbers 0-9)"
       oninput="processText()"
     />
     
-    <button onclick="processText()">Processar</button>
+    <button onclick="processText()" id="processButton">Process</button>
     
     <textarea
       id="output"
-      placeholder="Resultado aparecerá aqui..."
+      placeholder="Result will appear here..."
       readonly
     ></textarea>
     
     <div class="example">
-      <div class="example-label">Exemplo com rotação atual:</div>
+      <div class="example-label" id="exampleLabel">Example with current rotation:</div>
       <div id="exampleText">A → N, B → O, C → P...</div>
     </div>
   </div>
   
+  <!-- Card de visualização -->
   <div class="card">
-    <h2>📊 Visualização do Algoritmo</h2>
+    <h2 id="visualizationTitle">📊 Algorithm Visualization</h2>
     
-    <div class="info-text">
-      O algoritmo funciona assim: para cada caractere, ele calcula a nova posição somando o valor de rotação e usando módulo para "voltar ao início" do alfabeto quando necessário.
+    <div class="info-text" id="algorithmDescription">
+      The algorithm works like this: for each character, it calculates the new position by adding the rotation value and using modulo to "wrap around" the alphabet when needed.
     </div>
     
     <div class="visualization">
-      <div class="viz-title">Alfabeto Original (A-Z)</div>
+      <div class="viz-title" id="originalAlphabet">Original Alphabet (A-Z)</div>
       <div class="alphabet-row" id="alphabetOriginal"></div>
       
-      <div class="arrow">↓ Rotação de <span id="rotationDisplay">13</span> posições ↓</div>
+      <div class="arrow">
+        ↓ <span id="rotationArrow">Rotation of</span> <span id="rotationDisplay">13</span> <span id="positions">positions</span> ↓
+      </div>
       
-      <div class="viz-title">Alfabeto Transformado</div>
+      <div class="viz-title" id="transformedAlphabet">Transformed Alphabet</div>
       <div class="alphabet-row" id="alphabetTransformed"></div>
     </div>
     
     <div class="visualization">
-      <div class="viz-title">Números (0-9)</div>
+      <div class="viz-title" id="originalNumbers">Numbers (0-9)</div>
       <div class="alphabet-row" id="numbersOriginal"></div>
       
-      <div class="arrow">↓ Rotação de <span id="rotationDisplayNum">13</span> % 10 = <span id="numRotation">3</span> ↓</div>
+      <div class="arrow">
+        ↓ <span id="rotationArrowNum">Rotation of</span> <span id="rotationDisplayNum">13</span> % 10 = <span id="numRotation">3</span> ↓
+      </div>
       
-      <div class="viz-title">Números Transformados</div>
+      <div class="viz-title" id="transformedNumbers">Transformed Numbers</div>
       <div class="alphabet-row" id="numbersTransformed"></div>
     </div>
     
-    <div class="info-text" style="margin-top: 1.5rem;">
-      <strong>Fórmula matemática:</strong><br>
-      • Para letras: <code>nova_posição = (posição_atual + rotação) % 26</code><br>
-      • Para números: <code>novo_número = (número_atual + rotação) % 10</code><br>
+    <div class="info-text">
+      <strong id="formulaTitle">Mathematical formula:</strong><br>
+      • <span id="lettersFormula">For letters:</span> <code>new_position = (current_position + rotation) % 26</code><br>
+      • <span id="numbersFormula">For numbers:</span> <code>new_number = (current_number + rotation) % 10</code><br>
       <br>
-      O operador módulo (%) garante que o resultado sempre fique dentro do intervalo válido (0-25 para letras, 0-9 para números).
+      <span id="moduloExplanation">The modulo operator (%) ensures the result always stays within the valid range (0-25 for letters, 0-9 for numbers).</span>
     </div>
   </div>
 </div>
 
-<script>
-let currentRotation = 13;
-
-function rotCipher(text, rotation) {
-  let result = "";
-  for (const char of text) {
-    if (char >= 'a' && char <= 'z') {
-      const base = 'a'.charCodeAt(0);
-      const newChar = (char.charCodeAt(0) - base + rotation) % 26 + base;
-      result += String.fromCharCode(newChar);
-    } else if (char >= 'A' && char <= 'Z') {
-      const base = 'A'.charCodeAt(0);
-      const newChar = (char.charCodeAt(0) - base + rotation) % 26 + base;
-      result += String.fromCharCode(newChar);
-    } else if (char >= '0' && char <= '9') {
-      const base = '0'.charCodeAt(0);
-      const newChar = (char.charCodeAt(0) - base + rotation) % 10 + base;
-      result += String.fromCharCode(newChar);
-    } else {
-      result += char;
-    }
-  }
-  return result;
-}
-
-function updateRotation() {
-  currentRotation = parseInt(document.getElementById("rotation").value);
-  document.getElementById("rotationValue").textContent = currentRotation;
-  document.getElementById("rotationDisplay").textContent = currentRotation;
-  document.getElementById("rotationDisplayNum").textContent = currentRotation;
-  document.getElementById("numRotation").textContent = currentRotation % 10;
-  
-  updateVisualization();
-  updateExample();
-  processText();
-}
-
-function updateVisualization() {
-  // Alfabeto original
-  const alphaOriginal = document.getElementById("alphabetOriginal");
-  alphaOriginal.innerHTML = "";
-  for (let i = 0; i < 26; i++) {
-    const div = document.createElement("div");
-    div.className = "char-box";
-    div.textContent = String.fromCharCode(65 + i);
-    alphaOriginal.appendChild(div);
-  }
-  
-  // Alfabeto transformado
-  const alphaTransformed = document.getElementById("alphabetTransformed");
-  alphaTransformed.innerHTML = "";
-  for (let i = 0; i < 26; i++) {
-    const div = document.createElement("div");
-    div.className = "char-box highlight";
-    const newPos = (i + currentRotation) % 26;
-    div.textContent = String.fromCharCode(65 + newPos);
-    alphaTransformed.appendChild(div);
-  }
-  
-  // Números originais
-  const numOriginal = document.getElementById("numbersOriginal");
-  numOriginal.innerHTML = "";
-  for (let i = 0; i < 10; i++) {
-    const div = document.createElement("div");
-    div.className = "char-box";
-    div.textContent = i;
-    numOriginal.appendChild(div);
-  }
-  
-  // Números transformados
-  const numTransformed = document.getElementById("numbersTransformed");
-  numTransformed.innerHTML = "";
-  for (let i = 0; i < 10; i++) {
-    const div = document.createElement("div");
-    div.className = "char-box highlight";
-    const newNum = (i + currentRotation) % 10;
-    div.textContent = newNum;
-    numTransformed.appendChild(div);
-  }
-}
-
-function updateExample() {
-  const examples = [];
-  const indices = [0, 1, 2, 13, 14];
-
-  for (const i of indices) {
-    const original = String.fromCharCode(65 + i);
-    const transformed = rotCipher(original, currentRotation);
-    examples.push(`${original} → ${transformed}`);
-  }
-  document.getElementById("exampleText").textContent = examples.join(", ") + "...";
-}
-
-function processText() {
-  const input = document.getElementById("input").value;
-  const output = rotCipher(input, currentRotation);
-  document.getElementById("output").value = output;
-}
-
-// Inicializar
-updateRotation();
-</script>
+<script src="translations.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
