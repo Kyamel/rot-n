@@ -1,6 +1,6 @@
 let currentRotation = 13;
 let currentLanguage = 'en';
-let currentTheme = 'dark';
+let currentTheme = 'light';
 
 // SHA-256 Implementation
 function sha256(message) {
@@ -226,7 +226,7 @@ function toggleLanguage() {
 // Alternar tema
 function toggleTheme() {
   const toggle = document.getElementById('themeToggle');
-  currentTheme = toggle.checked ? 'light' : 'dark';
+  currentTheme = toggle.checked ? 'dark' : 'light';
   document.body.className = currentTheme;
   
   // Atualizar label do tema
