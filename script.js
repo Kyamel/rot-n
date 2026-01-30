@@ -109,21 +109,6 @@ function processSHA256() {
   document.getElementById("sha256Output").value = hash;
 }
 
-// Copiar hash para área de transferência
-function copySHA256() {
-  const output = document.getElementById("sha256Output");
-  output.select();
-  document.execCommand("copy");
-  
-  // Feedback visual
-  const button = event.target;
-  const originalText = button.textContent;
-  button.textContent = currentLanguage === 'en' ? '✓ Copied!' : '✓ Copiado!';
-  setTimeout(() => {
-    button.textContent = originalText;
-  }, 2000);
-}
-
 // Função de cifra ROT
 function rotCipher(text, rotation) {
   let result = "";
