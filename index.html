@@ -10,32 +10,48 @@
 </head>
 <body>
 <div class="container">
-  <!-- Header com controles estilo iOS -->
+  <!-- Header simplificado e alinhado à direita -->
   <div class="controls-header">
-    <img src="logo.svg" alt="Logo" class="logo-header" />
-    <div class="controls">
-      <!-- Switch de Idioma -->
-      <div class="switch-container">
-        <span class="switch-label">🌐</span>
-        <div class="language-switch">
-          <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
-          <button class="lang-btn" data-lang="pt-BR" onclick="setLanguage('pt-BR')">PT</button>
-        </div>
+      <img src="logo.svg" alt="Logo" class="logo-header" />
+      <div class="controls">
+          <!-- Switch de Idioma - estilo iOS -->
+          <div class="control-item">
+              <span class="control-icon">🌐</span>
+              <div class="language-switch">
+                  <div class="language-toggle-container">
+                      <input type="checkbox" id="languageToggle" class="language-toggle" onchange="toggleLanguage()" />
+                      <label for="languageToggle" class="language-toggle-label">
+                          <div class="language-labels">
+                              <span class="language-label active">EN</span>
+                              <span class="language-label">PT</span>
+                          </div>
+                          <span class="language-toggle-handle">EN</span>
+                      </label>
+                  </div>
+                  <span class="switch-text" id="languageLabel">English</span>
+              </div>
+          </div>
+          
+          <!-- Switch de Tema - estilo iOS -->
+          <div class="control-item">
+              <span class="control-icon">🎨</span>
+              <div class="theme-switch">
+                  <div class="theme-toggle-container">
+                      <input type="checkbox" id="themeToggle" class="ios-toggle" onchange="toggleTheme()" />
+                      <label for="themeToggle" class="ios-toggle-label">
+                          <div class="theme-labels">
+                              <span class="theme-icon-label">🌙</span>
+                              <span class="theme-icon-label">☀️</span>
+                          </div>
+                          <span class="ios-toggle-handle"></span>
+                      </label>
+                  </div>
+                  <span class="switch-text" id="themeLabel">Dark</span>
+              </div>
+          </div>
       </div>
-      
-      <!-- Switch de Tema -->
-      <div class="switch-container">
-        <span class="switch-label">🎨</span>
-        <div class="theme-switch">
-          <input type="checkbox" id="themeToggle" class="ios-toggle" onchange="toggleTheme()" />
-          <label for="themeToggle" class="ios-toggle-label">
-            <span class="ios-toggle-handle"></span>
-          </label>
-          <span class="theme-label" id="themeLabel">Dark</span>
-        </div>
-      </div>
-    </div>
   </div>
+  <!-- REMOVA ESTA LINHA: </div> ← ESTÁ FECHANDO O CONTAINER MUITO CEDO -->
 
   <!-- Card principal -->
   <div class="card">
@@ -122,7 +138,7 @@
       <span id="moduloExplanation">The modulo operator (%) ensures the result always stays within the valid range (0-25 for letters, 0-9 for numbers).</span>
     </div>
   </div>
-</div>
+</div> <!-- ESTE é o </div> correto que fecha o .container -->
 
 <script src="translations.js"></script>
 <script src="script.js"></script>

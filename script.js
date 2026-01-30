@@ -99,24 +99,21 @@ function processText() {
   document.getElementById("output").value = output;
 }
 
-// Definir idioma via botões
-function setLanguage(lang) {
-  currentLanguage = lang;
+// Alternar idioma via switch
+function toggleLanguage() {
+  const toggle = document.getElementById('languageToggle');
+  currentLanguage = toggle.checked ? 'pt-BR' : 'en';
   
-  // Atualizar botões
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.remove('active');
-    if (btn.dataset.lang === lang) {
-      btn.classList.add('active');
-    }
-  });
+  // Atualizar o handle do switch
+  const handle = document.querySelector('.language-toggle-handle');
+  handle.textContent = toggle.checked ? 'PT' : 'EN';
   
   // Atualizar textos
   updateTexts();
   updateExample();
   
   // Salvar preferência
-  localStorage.setItem('rotCipherLanguage', lang);
+  localStorage.setItem('rotCipherLanguage', currentLanguage);
 }
 
 // Alternar tema
@@ -126,11 +123,24 @@ function toggleTheme() {
   document.body.className = currentTheme;
   
   // Atualizar label do tema
-  document.getElementById('themeLabel').textContent = 
-    translations[currentLanguage][currentTheme === 'dark' ? 'darkLabel' : 'lightLabel'];
+  updateThemeLabel();
   
   // Salvar preferência
   localStorage.setItem('rotCipherTheme', currentTheme);
+}
+
+// Função separada para atualizar apenas o label do tema
+function updateThemeLabel() {
+  const t = translations[currentLanguage];
+  document.getElementById('themeLabel').textContent = 
+    currentTheme === 'dark' ? t.darkLabel : t.lightLabel;
+}
+
+// Função separada para atualizar apenas o label do idioma
+function updateLanguageLabel() {
+  const t = translations[currentLanguage];
+  document.getElementById('languageLabel').textContent = 
+    currentLanguage === 'en' ? t.englishLabel : t.portugueseLabel;
 }
 
 // Atualizar textos
@@ -162,9 +172,9 @@ function updateTexts() {
   document.getElementById("input").placeholder = t.inputPlaceholder;
   document.getElementById("output").placeholder = t.outputPlaceholder;
   
-  // Label do tema
-  const themeLabel = currentTheme === 'dark' ? t.darkLabel : t.lightLabel;
-  document.getElementById('themeLabel').textContent = themeLabel;
+  // Labels dos switches (usar as funções separadas)
+  updateThemeLabel();
+  updateLanguageLabel();
 }
 
 // Inicialização
@@ -182,13 +192,23 @@ function init() {
   const savedLang = localStorage.getItem('rotCipherLanguage');
   if (savedLang) {
     currentLanguage = savedLang;
-    setLanguage(savedLang);
+    
+    // Atualizar o switch de idioma
+    const langToggle = document.getElementById('languageToggle');
+    langToggle.checked = currentLanguage === 'pt-BR';
+    
+    // Atualizar o handle do switch
+    const handle = document.querySelector('.language-toggle-handle');
+    handle.textContent = currentLanguage === 'en' ? 'EN' : 'PT';
   }
   
   // Atualizar interface
   updateTexts();
   updateVisualization();
   updateExample();
+  
+  // Processar texto se houver algo no input
+  processText();
 }
 
 // Inicializar quando a página carregar

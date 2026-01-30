@@ -45,6 +45,10 @@ body.dark .example {
     background: #2a2f4c;
 }
 
+body.dark .info-text {
+    color: #b8b8c8;
+}
+
 /* Tema claro */
 body.light {
     background: #f5f5f7;
@@ -77,37 +81,270 @@ body.light .example {
     background: #f0f0f5;
 }
 
+body.light .info-text {
+    color: #666677;
+}
+
 /* Estilos comuns */
 .container {
     width: 100%;
     max-width: 800px;
 }
 
-/* Header com logo maior */
+/* Header simplificado e alinhado à direita */
+/* Header simplificado e alinhado à direita */
 .controls-header {
     margin-bottom: 2rem;
     display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .logo-header {
-    height: 50px; /* Logo maior */
+    height: 40px;
     width: auto;
 }
 
 .controls {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     align-items: center;
     flex-wrap: wrap;
-    flex: 1;
-    justify-content: flex-end;
+}
+
+/* Controles unificados - mesmo tamanho e estilo */
+.control-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.6rem 1rem;
+    background: rgba(108, 124, 255, 0.08);
+    border-radius: 12px;
+    border: 1.5px solid rgba(108, 124, 255, 0.15);
+    transition: all 0.3s ease;
+    height: 48px;
+    box-sizing: border-box;
+}
+
+body.dark .control-item {
+    background: rgba(108, 124, 255, 0.05);
+    border-color: rgba(108, 124, 255, 0.25);
+}
+
+body.light .control-item {
+    background: rgba(108, 124, 255, 0.05);
+    border-color: rgba(108, 124, 255, 0.2);
+}
+
+/* Ícones nos controles */
+.control-icon {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Switch de Idioma - estilo iOS */
+.language-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.language-toggle-container {
+    position: relative;
+    display: inline-block;
+}
+
+.language-toggle {
+    display: none;
+}
+
+.language-toggle-label {
+    display: flex;
+    width: 80px;
+    height: 32px;
+    background: #d1d1d6;
+    border-radius: 16px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-items: center;
+    padding: 0 4px;
+}
+
+body.dark .language-toggle-label {
+    background: #555;
+}
+
+.language-toggle-handle {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    left: 4px;
+    top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+
+.language-toggle:checked + .language-toggle-label .language-toggle-handle {
+    transform: translateX(48px);
+}
+
+.language-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 8px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.language-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6c7cff;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.language-toggle-label .language-label:nth-child(1) {
+    color: #6c7cff;
+}
+
+.language-toggle-label .language-label:nth-child(2) {
+    color: #6c7cff;
+}
+
+.language-toggle:checked + .language-toggle-label .language-label:nth-child(1) {
+    opacity: 0.7;
+}
+
+.language-toggle:checked + .language-toggle-label .language-label:nth-child(2) {
+    opacity: 1;
+}
+
+.language-toggle:not(:checked) + .language-toggle-label .language-label:nth-child(1) {
+    opacity: 1;
+}
+
+.language-toggle:not(:checked) + .language-toggle-label .language-label:nth-child(2) {
+    opacity: 0.7;
+}
+
+/* Switch de Tema - estilo iOS */
+.theme-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.theme-toggle-container {
+    position: relative;
+    display: inline-block;
+}
+
+.ios-toggle {
+    display: none;
+}
+
+.ios-toggle-label {
+    display: flex;
+    width: 80px;
+    height: 32px;
+    background: #d1d1d6;
+    border-radius: 16px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-items: center;
+    padding: 0 4px;
+}
+
+body.dark .ios-toggle-label {
+    background: #555;
+}
+
+.ios-toggle:checked + .ios-toggle-label {
+    background: #6c7cff;
+}
+
+.ios-toggle-handle {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    left: 4px;
+    top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ios-toggle:checked + .ios-toggle-label .ios-toggle-handle {
+    transform: translateX(48px);
+}
+
+.theme-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 8px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.theme-icon-label {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.ios-toggle:checked + .ios-toggle-label .theme-icon-label:nth-child(1) {
+    opacity: 0.7;
+}
+
+.ios-toggle:checked + .ios-toggle-label .theme-icon-label:nth-child(2) {
+    opacity: 1;
+}
+
+.ios-toggle:not(:checked) + .ios-toggle-label .theme-icon-label:nth-child(1) {
+    opacity: 1;
+}
+
+.ios-toggle:not(:checked) + .ios-toggle-label .theme-icon-label:nth-child(2) {
+    opacity: 0.7;
+}
+
+/* Texto ao lado dos switches (não mais abaixo) */
+.switch-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #6c7cff;
+    min-width: 60px;
+}
+
+body.light .switch-text {
+    color: #5a6bff;
 }
 
 .card {
     padding: 2rem;
-    border-radius: 16px; /* Bordas mais arredondadas */
+    border-radius: 16px;
     margin-bottom: 1.5rem;
 }
 
@@ -115,7 +352,7 @@ h1 {
     margin-top: 0;
     text-align: center;
     color: #6c7cff;
-    font-size: 1.8rem; /* Título maior */
+    font-size: 1.8rem;
 }
 
 h2 {
@@ -127,15 +364,7 @@ h2 {
 .info-text {
     line-height: 1.6;
     margin-bottom: 1rem;
-    font-size: 1.05rem; /* Texto um pouco maior */
-}
-
-body.dark .info-text {
-    color: #b8b8c8;
-}
-
-body.light .info-text {
-    color: #666677;
+    font-size: 1.05rem;
 }
 
 .rotation-control {
@@ -172,8 +401,8 @@ body.light .info-text {
 input[type="text"], textarea, button {
     width: 100%;
     margin-top: 1rem;
-    padding: 0.9rem; /* Mais padding */
-    border-radius: 10px; /* Bordas mais arredondadas */
+    padding: 0.9rem;
+    border-radius: 10px;
     border: none;
     font-size: 1.05rem;
     transition: all 0.3s;
@@ -202,7 +431,7 @@ button:hover {
 
 textarea {
     resize: vertical;
-    min-height: 100px; /* Área maior */
+    min-height: 100px;
     font-family: 'Courier New', monospace;
     line-height: 1.5;
 }
@@ -273,181 +502,45 @@ textarea {
     50% { transform: scale(1.08); }
 }
 
-/* ========== CONTROLES SIMPLIFICADOS ========== */
-
-/* Container dos switches */
-.switch-container {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0.6rem 1rem;
-    background: rgba(108, 124, 255, 0.08);
-    border-radius: 12px;
-    border: 1.5px solid rgba(108, 124, 255, 0.15);
-    transition: all 0.3s ease;
-}
-
-body.dark .switch-container {
-    background: rgba(108, 124, 255, 0.05);
-    border-color: rgba(108, 124, 255, 0.25);
-}
-
-.switch-label {
-    font-size: 1.3rem;
-    opacity: 0.9;
-}
-
-/* Switch de Idioma - SIMPLIFICADO */
-.language-switch {
-    font-size: 1.0rem;
-    opacity: 0.9;
-    display: flex;
-    background: rgba(108, 124, 255, 0.1);
-    border-radius: 10px;
-    gap: 2px;
-}
-
-.lang-btn {
-    padding: 0.5rem 0.9rem;
-    border: none;
-    background: transparent;
-    color: #6c7cff;
-    font-weight: 600;
-    font-size: 0.9rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    min-width: 45px;
-    text-align: center;
-}
-
-.lang-btn.active {
-    background: #6c7cff;
-    color: white;
-    box-shadow: 0 2px 6px rgba(108, 124, 255, 0.3);
-}
-
-/* Switch de Tema - SIMPLIFICADO */
-.theme-switch {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-}
-
-.ios-toggle {
-    display: none;
-}
-
-.ios-toggle-label {
-    display: block;
-    width: 54px;
-    height: 30px;
-    background: #d1d1d6;
-    border-radius: 15px;
-    position: relative;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-body.dark .ios-toggle-label {
-    background: #555;
-}
-
-.ios-toggle:checked + .ios-toggle-label {
-    background: #6c7cff;
-}
-
-.ios-toggle-handle {
-    display: block;
-    width: 24px;
-    height: 24px;
-    background: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    transition: transform 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.ios-toggle:checked + .ios-toggle-label .ios-toggle-handle {
-    transform: translateX(24px);
-}
-
-.theme-label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #6c7cff;
-    min-width: 45px;
-}
-
-/* Tema claro para controles */
-body.light .switch-container {
-    background: rgba(108, 124, 255, 0.05);
-    border-color: rgba(108, 124, 255, 0.2);
-}
-
-body.light .language-switch {
-    background: rgba(108, 124, 255, 0.08);
-}
-
-body.light .lang-btn {
-    color: #5a6bff;
-}
-
-body.light .lang-btn.active {
-    color: white;
-}
-
-body.light .ios-toggle-label {
-    background: #d1d1d6;
-}
-
-body.light .theme-label {
-    color: #5a6bff;
-}
-
 /* Responsividade */
 @media (max-width: 700px) {
     .controls-header {
-        flex-direction: column;
+        justify-content: center;
         text-align: center;
         gap: 1rem;
-        margin-bottom: 1.5rem;
     }
     
     .logo-header {
-        height: 45px;
+        height: 35px;
     }
     
     .controls {
         justify-content: center;
-        gap: 0.8rem;
-        width: 100%;
+        gap: 1rem;
     }
     
-    .switch-container {
+    .control-item {
         padding: 0.5rem 0.8rem;
+        height: 44px;
     }
     
-    .lang-btn {
-        padding: 0.4rem 0.8rem;
-        min-width: 42px;
-        font-size: 0.85rem;
-    }
-    
+    .language-toggle-label,
     .ios-toggle-label {
-        width: 50px;
+        width: 70px;
         height: 28px;
     }
     
+    .language-toggle-handle,
     .ios-toggle-handle {
-        width: 22px;
-        height: 22px;
+        width: 20px;
+        height: 20px;
+        top: 4px;
+        left: 4px;
     }
     
+    .language-toggle:checked + .language-toggle-label .language-toggle-handle,
     .ios-toggle:checked + .ios-toggle-label .ios-toggle-handle {
-        transform: translateX(22px);
+        transform: translateX(42px);
     }
     
     h1 {
@@ -462,16 +555,22 @@ body.light .theme-label {
 }
 
 @media (max-width: 400px) {
-    .controls {
+    .controls-header {
         flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .switch-container {
-        justify-content: space-between;
     }
     
     .logo-header {
-        height: 40px;
+        height: 32px;
+    }
+    
+    .controls {
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .control-item {
+        flex: 1;
+        justify-content: center;
+        max-width: 140px;
     }
 }
