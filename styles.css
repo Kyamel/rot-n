@@ -114,6 +114,11 @@ body.light .info-text {
     flex-wrap: wrap;
 }
 
+.control-item:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
 /* Controles unificados - mesmo tamanho e estilo */
 .control-item {
     display: flex;
@@ -608,4 +613,25 @@ body.light .char-box.highlight {
   font-size: 0.85rem;
   margin: 0.3rem 0;
   word-break: break-all;
+}
+
+
+
+.github-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.85;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.github-link:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.github-icon {
+  display: block;
 }
