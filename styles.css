@@ -1,3 +1,7 @@
+/* ============================================
+   BASE STYLES & RESET
+   ============================================ */
+
 * {
     box-sizing: border-box;
 }
@@ -13,7 +17,11 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Tema escuro (default) */
+
+/* ============================================
+   THEME COLORS - DARK MODE (DEFAULT)
+   ============================================ */
+
 body.dark {
     background: #0f1220;
     color: #eaeaf0;
@@ -21,7 +29,7 @@ body.dark {
 
 body.dark .card {
     background: #1a1f3c;
-    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 body.dark input[type="text"],
@@ -41,6 +49,13 @@ body.dark .char-box {
     border: 2px solid #2a2f4c;
 }
 
+body.dark .char-box.highlight {
+    background: #6c7cff;
+    border-color: #6c7cff;
+    color: white;
+    animation: pulse 0.5s ease-in-out;
+}
+
 body.dark .example {
     background: #2a2f4c;
 }
@@ -49,7 +64,25 @@ body.dark .info-text {
     color: #b8b8c8;
 }
 
-/* Tema claro */
+body.dark .control-item {
+    background: rgba(108, 124, 255, 0.05);
+    border-color: rgba(108, 124, 255, 0.25);
+}
+
+body.dark .ios-toggle-label,
+body.dark .language-toggle-label {
+    background: #555;
+}
+
+body.dark .switch-text {
+    color: #6c7cff;
+}
+
+
+/* ============================================
+   THEME COLORS - LIGHT MODE
+   ============================================ */
+
 body.light {
     background: #f5f5f7;
     color: #333344;
@@ -57,7 +90,7 @@ body.light {
 
 body.light .card {
     background: #ffffff;
-    box-shadow: 0 10px 30px rgba(0,0,0,.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 body.light input[type="text"],
@@ -77,6 +110,14 @@ body.light .char-box {
     border: 2px solid #dddddd;
 }
 
+/* Darker blue for better contrast in light mode */
+body.light .char-box.highlight {
+    background: #5a6bff;
+    border-color: #5a6bff;
+    color: white;
+    animation: pulse 0.5s ease-in-out;
+}
+
 body.light .example {
     background: #f0f0f5;
 }
@@ -85,14 +126,37 @@ body.light .info-text {
     color: #666677;
 }
 
-/* Estilos comuns */
+body.light .control-item {
+    background: rgba(108, 124, 255, 0.05);
+    border-color: rgba(108, 124, 255, 0.2);
+}
+
+body.light .switch-text {
+    color: #5a6bff;
+}
+
+
+/* ============================================
+   LAYOUT & CONTAINER
+   ============================================ */
+
 .container {
     width: 100%;
     max-width: 800px;
 }
 
-/* Header simplificado e alinhado à direita */
-/* Header simplificado e alinhado à direita */
+.card {
+    padding: 2rem;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+}
+
+
+/* ============================================
+   HEADER & CONTROLS
+   ============================================ */
+
+/* Header with logo and controls aligned */
 .controls-header {
     margin-bottom: 2rem;
     display: flex;
@@ -107,6 +171,7 @@ body.light .info-text {
     width: auto;
 }
 
+/* Controls container */
 .controls {
     display: flex;
     gap: 1.5rem;
@@ -114,12 +179,7 @@ body.light .info-text {
     flex-wrap: wrap;
 }
 
-.control-item:hover {
-  opacity: 1;
-  transform: translateY(-1px);
-}
-
-/* Controles unificados - mesmo tamanho e estilo */
+/* Individual control items (theme and language toggles) */
 .control-item {
     display: flex;
     align-items: center;
@@ -133,23 +193,34 @@ body.light .info-text {
     box-sizing: border-box;
 }
 
-body.dark .control-item {
-    background: rgba(108, 124, 255, 0.05);
-    border-color: rgba(108, 124, 255, 0.25);
+.control-item:hover {
+    opacity: 1;
+    transform: translateY(-1px);
 }
 
-body.light .control-item {
-    background: rgba(108, 124, 255, 0.05);
-    border-color: rgba(108, 124, 255, 0.2);
-}
-
-/* Ícones nos controles */
+/* Icons in control items */
 .control-icon {
     font-size: 1.1rem;
     opacity: 0.9;
 }
 
-/* Switch de Idioma - estilo iOS */
+
+/* ============================================
+   TOGGLE SWITCHES - SHARED STYLES
+   ============================================ */
+
+/* Text labels next to switches */
+.switch-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    min-width: 60px;
+}
+
+
+/* ============================================
+   LANGUAGE TOGGLE - iOS STYLE
+   ============================================ */
+
 .language-switch {
     display: flex;
     align-items: center;
@@ -178,10 +249,7 @@ body.light .control-item {
     padding: 0;
 }
 
-body.dark .language-toggle-label {
-    background: #555;
-}
-
+/* Handle that slides between EN and PT */
 .language-toggle-handle {
     position: absolute;
     width: 24px;
@@ -197,12 +265,14 @@ body.dark .language-toggle-label {
     justify-content: center;
     font-weight: bold;
     font-size: 0.75rem;
+    color: #333;
 }
 
 .language-toggle:checked + .language-toggle-label .language-toggle-handle {
     transform: translateX(48px);
 }
 
+/* Language labels (EN/PT) */
 .language-labels {
     display: flex;
     justify-content: space-between;
@@ -222,14 +292,7 @@ body.dark .language-toggle-label {
     transition: opacity 0.3s ease;
 }
 
-.language-toggle-label .language-label:nth-child(1) {
-    color: #6c7cff;
-}
-
-.language-toggle-label .language-label:nth-child(2) {
-    color: #6c7cff;
-}
-
+/* Active state for language labels */
 .language-toggle:checked + .language-toggle-label .language-label:nth-child(1) {
     opacity: 0.7;
 }
@@ -246,7 +309,11 @@ body.dark .language-toggle-label {
     opacity: 0.7;
 }
 
-/* Switch de Tema - estilo iOS */
+
+/* ============================================
+   THEME TOGGLE - iOS STYLE
+   ============================================ */
+
 .theme-switch {
     display: flex;
     align-items: center;
@@ -275,14 +342,12 @@ body.dark .language-toggle-label {
     padding: 0;
 }
 
-body.dark .ios-toggle-label {
-    background: #555;
-}
-
+/* Theme toggle active state */
 .ios-toggle:checked + .ios-toggle-label {
     background: #6c7cff;
 }
 
+/* Handle that slides between dark and light modes */
 .ios-toggle-handle {
     position: absolute;
     width: 24px;
@@ -302,6 +367,7 @@ body.dark .ios-toggle-label {
     transform: translateX(48px);
 }
 
+/* Theme icon labels (moon/sun) */
 .theme-labels {
     display: flex;
     justify-content: space-between;
@@ -319,6 +385,7 @@ body.dark .ios-toggle-label {
     transition: opacity 0.3s ease;
 }
 
+/* Active state for theme icons */
 .ios-toggle:checked + .ios-toggle-label .theme-icon-label:nth-child(1) {
     opacity: 0.7;
 }
@@ -335,23 +402,10 @@ body.dark .ios-toggle-label {
     opacity: 0.7;
 }
 
-/* Texto ao lado dos switches (não mais abaixo) */
-.switch-text {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #6c7cff;
-    min-width: 60px;
-}
 
-body.light .switch-text {
-    color: #5a6bff;
-}
-
-.card {
-    padding: 2rem;
-    border-radius: 16px;
-    margin-bottom: 1.5rem;
-}
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
 
 h1 {
     margin-top: 0;
@@ -372,38 +426,19 @@ h2 {
     font-size: 1.05rem;
 }
 
-.rotation-control {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
+.info-text div {
+    margin: 0.3rem 0;
+    line-height: 1.5;
 }
 
-.rotation-control label {
-    font-weight: bold;
-    min-width: 100px;
-    font-size: 1.0rem;
-}
 
-.rotation-control input[type="range"] {
-    flex: 1;
-    margin: 0;
-    height: 8px;
-    border-radius: 4px;
-}
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
 
-.rotation-value {
-    background: #6c7cff;
-    color: white;
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    font-weight: bold;
-    min-width: 60px;
-    text-align: center;
-    font-size: 1.1rem;
-}
-
-input[type="text"], textarea, button {
+input[type="text"],
+textarea,
+button {
     width: 100%;
     margin-top: 1rem;
     padding: 0.9rem;
@@ -413,7 +448,8 @@ input[type="text"], textarea, button {
     transition: all 0.3s;
 }
 
-input[type="text"]:focus, textarea:focus {
+input[type="text"]:focus,
+textarea:focus {
     outline: none;
     border-color: #6c7cff;
     box-shadow: 0 0 0 3px rgba(108, 124, 255, 0.2);
@@ -425,7 +461,6 @@ button {
     cursor: pointer;
     font-weight: bold;
     transition: all 0.2s;
-    font-size: 1.05rem;
 }
 
 button:hover {
@@ -441,6 +476,48 @@ textarea {
     line-height: 1.5;
 }
 
+/* Range input for rotation control */
+.rotation-control input[type="range"] {
+    flex: 1;
+    margin: 0;
+    height: 8px;
+    border-radius: 4px;
+}
+
+
+/* ============================================
+   ROT CIPHER - ROTATION CONTROL
+   ============================================ */
+
+.rotation-control {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.rotation-control label {
+    font-weight: bold;
+    min-width: 100px;
+    font-size: 1rem;
+}
+
+.rotation-value {
+    background: #6c7cff;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    min-width: 60px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+
+/* ============================================
+   VISUALIZATION COMPONENTS
+   ============================================ */
+
 .visualization {
     padding: 1.8rem;
     border-radius: 12px;
@@ -455,6 +532,7 @@ textarea {
     font-size: 1.1rem;
 }
 
+/* Alphabet and number rows */
 .alphabet-row {
     display: flex;
     flex-wrap: wrap;
@@ -463,6 +541,7 @@ textarea {
     margin-bottom: 1.2rem;
 }
 
+/* Individual character boxes */
 .char-box {
     padding: 0.6rem;
     border-radius: 6px;
@@ -473,28 +552,7 @@ textarea {
     font-size: 1.05rem;
 }
 
-.char-box.highlight {
-    background: #6c7cff;
-    border-color: #6c7cff;
-    color: white;
-    animation: pulse 0.5s ease-in-out;
-}
-
-body.dark .char-box.highlight {
-    background: #6c7cff;
-    border-color: #6c7cff;
-    color: white;
-    animation: pulse 0.5s ease-in-out;
-}
-
-/* Tema claro para highlight - usando cor mais escura para melhor contraste */
-body.light .char-box.highlight {
-    background: #5a6bff; /* Azul mais escuro para melhor contraste */
-    border-color: #5a6bff;
-    color: white;
-    animation: pulse 0.5s ease-in-out;
-}
-
+/* Arrow indicator between transformations */
 .arrow {
     text-align: center;
     color: #6c7cff;
@@ -502,6 +560,11 @@ body.light .char-box.highlight {
     margin: 0.8rem 0;
     font-weight: 500;
 }
+
+
+/* ============================================
+   EXAMPLES
+   ============================================ */
 
 .example {
     padding: 1.2rem;
@@ -517,12 +580,39 @@ body.light .char-box.highlight {
     font-weight: 600;
 }
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.08); }
+/* SHA-256 hash examples */
+.example div {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    margin: 0.3rem 0;
+    word-break: break-all;
 }
 
-/* Responsividade */
+#sha256Output {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+
+/* ============================================
+   RESPONSIVE DESIGN - TABLET & MOBILE
+   ============================================ */
+
 @media (max-width: 700px) {
     .controls-header {
         justify-content: center;
@@ -549,6 +639,7 @@ body.light .char-box.highlight {
         width: 70px;
         height: 28px;
     }
+
     
     .language-toggle-handle,
     .ios-toggle-handle {
@@ -593,45 +684,4 @@ body.light .char-box.highlight {
         justify-content: center;
         max-width: 140px;
     }
-}
-
-/* SHA-256 */
-#sha256Output {
-  font-family: 'Courier New', monospace;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-}
-
-.info-text div {
-  margin: 0.3rem 0;
-  line-height: 1.5;
-}
-
-/* Estilo para os exemplos de hash SHA-256 */
-.example div {
-  font-family: 'Courier New', monospace;
-  font-size: 0.85rem;
-  margin: 0.3rem 0;
-  word-break: break-all;
-}
-
-
-
-.github-link {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  text-decoration: none;
-  color: inherit;
-  opacity: 0.85;
-  transition: opacity 0.2s, transform 0.2s;
-}
-
-.github-link:hover {
-  opacity: 1;
-  transform: translateY(-1px);
-}
-
-.github-icon {
-  display: block;
 }
