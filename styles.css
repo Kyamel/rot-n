@@ -17,7 +17,6 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-
 /* ============================================
    THEME COLORS - DARK MODE (DEFAULT)
    ============================================ */
@@ -155,6 +154,10 @@ body.light .switch-text {
 /* ============================================
    HEADER & CONTROLS
    ============================================ */
+#title {
+  display: inline-block;
+  margin-top: 20px;
+}
 
 /* Header with logo and controls aligned */
 .controls-header {
@@ -167,7 +170,7 @@ body.light .switch-text {
 }
 
 .logo-header {
-    height: 40px;
+    height: 64px;
     width: auto;
 }
 
