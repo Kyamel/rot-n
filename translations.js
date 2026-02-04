@@ -1,7 +1,7 @@
 const translations = {
   en: {
     title: "ROT Cipher - Rotation Cipher",
-    whatIsRot: "What is ROT Cipher?",
+    whatIsRot: "❓ What is ROT Cipher?",
     rotDescription: "ROT (rotation) cipher is a simple substitution cipher where each letter is replaced by another letter that is a fixed number of positions forward in the alphabet. ROT13 (13 positions) is the most famous, but you can use any value from 1 to 25.",
     rotationLabel: "Rotation:",
     processButton: "Process",
@@ -22,7 +22,7 @@ const translations = {
     inputPlaceholder: "Enter text to cipher...",
     outputPlaceholder: "Result will appear here...",
     sha256Title: "🔐 SHA-256 Hash Generator",
-    whatIsSha256: "❓ What is SHA-256?",
+    whatIsSha256: "What is SHA-256?",
     sha256Description: "SHA-256 (Secure Hash Algorithm 256-bit) is a cryptographic hash function that produces a 64-character hexadecimal hash. It's widely used in blockchain, digital signatures, and password storage.",
     sha256GenerateButton: "Generate Hash",
     sha256FeaturesTitle: "Key Features of SHA-256:",
