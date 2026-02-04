@@ -156,7 +156,7 @@ body.light .switch-text {
    ============================================ */
 #title {
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 1rem;
 }
 
 /* Header with logo and controls aligned */
@@ -170,6 +170,7 @@ body.light .switch-text {
 }
 
 .logo-header {
+    margin-top: 0.25rem;
     height: 64px;
     width: auto;
 }
