@@ -22,7 +22,7 @@ const translations = {
     inputPlaceholder: "Enter text to cipher...",
     outputPlaceholder: "Result will appear here...",
     sha256Title: "🔐 SHA-256 Hash Generator",
-    whatIsSha256: "What is SHA-256?",
+    whatIsSha256: "❓ What is SHA-256?",
     sha256Description: "SHA-256 (Secure Hash Algorithm 256-bit) is a cryptographic hash function that produces a 64-character hexadecimal hash. It's widely used in blockchain, digital signatures, and password storage.",
     sha256GenerateButton: "Generate Hash",
     sha256FeaturesTitle: "Key Features of SHA-256:",
@@ -49,7 +49,7 @@ const translations = {
   },
   'pt-BR': {
     title: "Cifra ROT - Cifra de Rotação",
-    whatIsRot: "O que é a Cifra ROT?",
+    whatIsRot: "❓ O que é a Cifra ROT?",
     rotDescription: "A cifra ROT (rotação) é uma cifra de substituição simples onde cada letra é substituída por outra letra que está um número fixo de posições à frente no alfabeto. ROT13 (13 posições) é a mais famosa, mas você pode usar qualquer valor de 1 a 25.",
     rotationLabel: "Rotação:",
     processButton: "Processar",
